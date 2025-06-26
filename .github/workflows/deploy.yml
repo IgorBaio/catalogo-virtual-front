@@ -5,6 +5,9 @@ on:
     branches:
       - main  # O deploy será feito ao fazer push na branch 'main'
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
