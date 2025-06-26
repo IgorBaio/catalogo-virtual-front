@@ -1,17 +1,17 @@
+import { useEffect, useState } from 'react'
+import { getProducts, type Product } from './api'
 import './App.css'
 
-interface Product {
-  id: number
-  name: string
-  price: string
-}
-
 function App() {
-  const products: Product[] = [
-    { id: 1, name: 'Produto A', price: 'R$ 10,00' },
-    { id: 2, name: 'Produto B', price: 'R$ 20,00' },
-    { id: 3, name: 'Produto C', price: 'R$ 30,00' },
-  ]
+  const [products, setProducts] = useState<Product[]>([])
+
+  useEffect(() => {
+    getProducts('BaioSystem')
+      .then((res) => setProducts(res.data))
+      .catch((err) => {
+        console.error('failed to fetch products', err)
+      })
+  }, [])
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -26,8 +26,19 @@ function App() {
               key={product.id}
               className="border rounded-md p-4 shadow-sm bg-white"
             >
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-48 object-cover mb-2"
+              />
               <h3 className="font-medium mb-1">{product.name}</h3>
-              <p className="text-sm text-gray-500">{product.price}</p>
+              <p className="text-sm text-gray-500 mb-2">
+                {product.description}
+              </p>
+              <p className="text-sm font-semibold mb-2">
+                R$ {product.price.toFixed(2)}
+              </p>
+              <p className="text-sm text-gray-500">{product.whatsappMessage}</p>
             </li>
           ))}
         </ul>
