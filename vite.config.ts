@@ -8,8 +8,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Catalogo Admin',
-        short_name: 'Admin',
+        name: 'Catalogo Virtual',
+        short_name: 'Virtual',
         start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',
@@ -27,5 +27,5 @@ export default defineConfig({
     host: true,
     allowedHosts: ['.baiosystems.com.br', 'igorbaio.github.io']
   },
-  base: "/catalogo-virtual-admin/"
+  base: "/catalogo-virtual-front/"
 })
